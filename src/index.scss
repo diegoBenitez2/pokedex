@@ -1,0 +1,26 @@
+
+//typography
+@font-face {
+  font-family: "Blippo-heavy";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Blippo Black D"),
+      /* Modern Browsers */ url("fonts/Blippo\ Black\ D.ttf") format("truetype");
+  font-weight: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "Blippo-heavy";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  font-size: 18px;
+}
+
+
+
+
+

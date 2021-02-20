@@ -1,13 +1,13 @@
-import "./App.scss";
+import "./styles/App.scss";
 
 //Components
 import Header from "./Header";
-import ContentCards from "./ContentCards";
+import CardBoard from "../pages/CardBoard";
 function App() {
   return (
     <div className="app">
       <Header />
-      <ContentCards/>
+      <CardBoard/>
     </div>
   );
 }

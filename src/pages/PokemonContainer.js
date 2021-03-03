@@ -16,9 +16,7 @@ class PokemonContainer extends Component {
       this.props.getAllPokes();
     }
   }
-  componentDidUpdate() {
-    console.log("ubo cambio");
-  }
+
   putCardPokemon = () => {
     const { pokemons, loading } = this.props;
 
@@ -31,13 +29,13 @@ class PokemonContainer extends Component {
     }
 
     return Object.keys(pokemons).map((poke) => (
-      <div key={poke} className="PokemonCard" id={poke}>
-        <PokemonCard 
-        img={pokemons[poke].image} 
-        id={poke} 
-        name={pokemons[poke].name}
-        types={pokemons[poke].types}
-        exp={pokemons[poke].experience}
+      <div key={poke} className="PokemonCard">
+        <PokemonCard
+          id={poke}
+          img={pokemons[poke].image}
+          name={pokemons[poke].name}
+          types={pokemons[poke].types}
+          exp={pokemons[poke].experience}
         />
       </div>
     ));

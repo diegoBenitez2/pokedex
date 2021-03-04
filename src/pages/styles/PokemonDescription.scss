@@ -7,11 +7,29 @@
   display: flex;
   z-index: 2;
   left: 66px;
-  bottom: 250px;
   margin: 0;
+  bottom: 0;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 10px;
   box-shadow: -6px 2px 6px rgba(0, 0, 0, 0.5);
+  transition: 1s all ease;
+  &.active {
+    bottom: 200px;
+    visibility: visible;
+    opacity: 1;
+  }
+  &_arrow {
+    position: relative;
+    left: 50%;
+    transform: rotate(90deg);
+    color: $midnightblueDark;
+    font-size: 30px;
+    height: fit-content;
+    &:hover {
+      color: $indigo;
+      cursor: pointer;
+    }
+  }
   &_textarea {
     position: relative;
     display: flex;
@@ -43,7 +61,7 @@
       margin: 0;
       span {
         color: $sandybrown;
-        font-family: "Blippo-heavy" ;
+        font-family: "Blippo-heavy";
         font-weight: normal;
       }
     }

@@ -7,6 +7,9 @@ import "./styles/PokemonDescription.scss";
 import Spinner from "../components/SpinnerDesc";
 
 class PokemonDescription extends Component {
+  state = {
+    isSelected: false,
+  };
   putImgPoke = () => {
     const { pokemon } = this.props;
     if (Object.keys(pokemon).length) {
@@ -67,14 +70,26 @@ class PokemonDescription extends Component {
 
   render() {
     console.log(this.props.pokemon);
-
+    let className = "PokemonDescription";
+    if (this.state.isSelected) {
+      className += " active";
+    }
     return (
-      <section className="PokemonDescription">
+      <section className={className}>
+        <i
+          className="PokemonDescription_arrow fas fa-chevron-left"
+          onClick={() =>
+            this.setState((state, props) => ({ isSelected: !state.isSelected }))
+          }
+        />
+        <div className="d-flex w-100">
         <figure className="PokemonDescription_figure">
           {this.putImgPoke()}
         </figure>
         <div className="PokemonDescription_textarea">
           {this.putDescriptionPoke()}
+        </div>
+
         </div>
       </section>
     );

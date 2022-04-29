@@ -1,15 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-//Css
-import "./styles/PokemonDescription.scss";
-//Components
-import Spinner from "../components/SpinnerDesc";
+// Css
+import './styles/PokemonDescription.scss';
+// Components
+import Spinner from '../components/SpinnerDesc';
 
 class PokemonDescription extends Component {
   state = {
     isSelected: false,
   };
+
   putImgPoke = () => {
     const { pokemon } = this.props;
     if (Object.keys(pokemon).length) {
@@ -23,19 +24,21 @@ class PokemonDescription extends Component {
     }
     return <Spinner />;
   };
+
   getAbilities = () => {
     const { pokemon } = this.props;
-    let description = "";
+    let description = '';
     pokemon.abilities.forEach((ab) => {
       description += `Ability: ${ab.name} \n`;
       ab.effect.forEach((ef) => {
-        if (ef.language === "en") {
+        if (ef.language === 'en') {
           description += `${ef.effect}\n`;
         }
       });
     });
     return description;
   };
+
   putDescriptionPoke = () => {
     const { pokemon } = this.props;
     if (Object.keys(pokemon).length) {
@@ -49,7 +52,7 @@ class PokemonDescription extends Component {
               <span className="m-2">{pokemon.experience}</span>
             </p>
             <p className="PokemonDescription_textarea-title fas fa-text-height">
-              {" "}
+              {' '}
               <span className="m-2">{pokemon.height}</span>
             </p>
             <p className="PokemonDescription_textarea-title fas fa-weight ">
@@ -70,25 +73,23 @@ class PokemonDescription extends Component {
 
   render() {
     console.log(this.props.pokemon);
-    let className = "PokemonDescription";
+    let className = 'PokemonDescription';
     if (this.state.isSelected) {
-      className += " active";
+      className += ' active';
     }
     return (
       <section className={className}>
         <i
           className="PokemonDescription_arrow fas fa-chevron-left"
-          onClick={() =>
-            this.setState((state, props) => ({ isSelected: !state.isSelected }))
-          }
+          onClick={() => this.setState((state, props) => ({ isSelected: !state.isSelected }))}
         />
         <div className="d-flex w-100">
-        <figure className="PokemonDescription_figure">
-          {this.putImgPoke()}
-        </figure>
-        <div className="PokemonDescription_textarea">
-          {this.putDescriptionPoke()}
-        </div>
+          <figure className="PokemonDescription_figure">
+            {this.putImgPoke()}
+          </figure>
+          <div className="PokemonDescription_textarea">
+            {this.putDescriptionPoke()}
+          </div>
 
         </div>
       </section>

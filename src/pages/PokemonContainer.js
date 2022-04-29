@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as pokesActions from "../actions/pokesActions";
-//Css
-import "./styles/PokemonContainer.scss";
-//Component
-import PokemonCard from "../components/PokemonCard";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as pokesActions from '../actions/pokesActions';
+// Css
+import './styles/PokemonContainer.scss';
+// Component
+import PokemonCard from '../components/PokemonCard';
 
-//Assets
-import SpinnerInfinity from "../assets/infinity.svg";
+// Assets
+import SpinnerInfinity from '../assets/infinity.svg';
 
 class PokemonContainer extends Component {
   componentDidMount() {
     if (!Object.keys(this.props.pokemons).length) {
-      console.log("no hay");
+      console.log('no hay');
       this.props.getAllPokes();
     }
   }

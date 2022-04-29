@@ -1,65 +1,65 @@
-import React, { Fragment } from "react";
-import { connect } from "react-redux";
-import * as pokesActions from "../actions/pokesActions";
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import * as pokesActions from '../actions/pokesActions';
 
-//Css
-import "./styles/PokemonCard.scss";
+// Css
+import './styles/PokemonCard.scss';
 
-//components
+// components
 
 const { getPokemon: getPoke } = pokesActions;
-const PokemonCard = (props) => {
+function PokemonCard(props) {
   const selectedCard = (e) => {
     const idCard = props.id;
     const $card = document.getElementById(`${idCard}`);
-    $card.classList.toggle("selected");
+    $card.classList.toggle('selected');
     props.getPoke(idCard);
   };
   return (
-    <Fragment>
+    <>
       <div className="PokemonCard__indicator">
         <div className="PokemonCard__indicator_types">
           {props.types.map((type) => {
             switch (type) {
-              case "fire":
+              case 'fire':
                 return (
-                  <i key={type} className="fas fa-fire text-danger m-2"></i>
+                  <i key={type} className="fas fa-fire text-danger m-2" />
                 );
-              case "grass":
+              case 'grass':
                 return (
                   <i
                     key={type}
                     className="fas fa-mountain text-success m-2"
-                  ></i>
+                  />
                 );
-              case "flying":
+              case 'flying':
                 return (
                   <i
                     key={type}
                     className="fas fa-feather-alt text-secondary m-1"
-                  ></i>
+                  />
                 );
-              case "water":
+              case 'water':
                 return (
-                  <i key={type} className="fas fa-water m-1 text-primary"></i>
+                  <i key={type} className="fas fa-water m-1 text-primary" />
                 );
-              case "poison":
+              case 'poison':
                 return (
                   <i
                     key={type}
                     className="fas fa-skull-crossbones m-1 text-dark"
-                  ></i>
+                  />
                 );
-              case "bug":
+              case 'bug':
                 return (
-                  <i key={type} className="fas fa-spider m-1 text-success"></i>
+                  <i key={type} className="fas fa-spider m-1 text-success" />
                 );
               default:
                 return (
                   <i
                     key={type}
                     className="fab fa-superpowers m-1 text-primary"
-                  ></i>
+                  />
                 );
             }
           })}
@@ -79,12 +79,11 @@ const PokemonCard = (props) => {
           id={props.id}
           className="PokemonCard__controls_btn"
           onClick={selectedCard}
-        ></button>
+        />
       </div>
-    </Fragment>
+    </>
   );
-};
-
+}
 
 const mapStateToProps = ({ pokemonsReducers }) => pokemonsReducers;
 const mapDispatchToProps = {

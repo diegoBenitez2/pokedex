@@ -1,5 +1,7 @@
-import { GET_ALL_POKE, GET_POKE, LOADING, ERROR } from "../types/PokesTypes";
-import axios from "axios";
+import axios from 'axios';
+import {
+  GET_ALL_POKE, GET_POKE, LOADING, ERROR,
+} from '../types/PokesTypes';
 
 export const getAllPokes = () => async (dispatch) => {
   dispatch({
@@ -8,11 +10,11 @@ export const getAllPokes = () => async (dispatch) => {
   try {
     const {
       data: { results },
-    } = await axios.get("https://pokeapi.co/api/v2/pokemon/");
+    } = await axios.get('https://pokeapi.co/api/v2/pokemon/');
 
     const pokemons = {};
     const getAllPokemons = results.map(
-      async (pokemon) => await axios.get(pokemon.url)
+      async (pokemon) => await axios.get(pokemon.url),
     );
 
     const allPokemons = await Promise.all(getAllPokemons);
@@ -33,7 +35,7 @@ export const getAllPokes = () => async (dispatch) => {
       payload: pokemons,
     });
   } catch (error) {
-    console.error("Error", error.message);
+    console.error('Error', error.message);
     dispatch({
       type: ERROR,
       payload: error,
@@ -48,26 +50,26 @@ export const getPokemon = (id) => async (dispatch) => {
 
   try {
     const { data: info } = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${id}`
+      `https://pokeapi.co/api/v2/pokemon/${id}`,
     );
 
     const pokemon = {};
-    pokemon["id"] = info.id;
-    pokemon["name"] = info.name;
-    pokemon["height"] = info.height;
-    pokemon["weight"] = info.weight;
-    pokemon["image"] = info.sprites.other.dream_world.front_default;
-    pokemon['experience'] = info.base_experience;
-    pokemon["abilities"] = [];
+    pokemon.id = info.id;
+    pokemon.name = info.name;
+    pokemon.height = info.height;
+    pokemon.weight = info.weight;
+    pokemon.image = info.sprites.other.dream_world.front_default;
+    pokemon.experience = info.base_experience;
+    pokemon.abilities = [];
 
     const getAbilities = info.abilities.map(
-      async (ab) => await axios.get(ab.ability.url)
+      async (ab) => await axios.get(ab.ability.url),
     );
 
     const allAbilities = await Promise.all(getAbilities);
     allAbilities.map((ability) => {
       const { data } = ability;
-      return pokemon["abilities"].push({
+      return pokemon.abilities.push({
         id: data.id,
         name: data.name,
         effect: data.effect_entries.map((ef) => ({
@@ -76,7 +78,7 @@ export const getPokemon = (id) => async (dispatch) => {
         })),
       });
     });
-  
+
     dispatch({
       type: GET_POKE,
       payload: pokemon,
